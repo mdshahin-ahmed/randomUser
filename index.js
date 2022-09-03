@@ -31,6 +31,9 @@ app.use("/user", toolsRoutes);
 //     },
 //   });
 // });
+app.get("/", (req, res) => {
+  res.send("Welcome!");
+});
 app.all("*", (req, res) => {
   res.send("No route found!");
 });
