@@ -14,6 +14,16 @@ module.exports.getAllUsers = (req, res, next) => {
   const allUsers = getUserData();
   res.send(allUsers);
 };
+module.exports.getSomeUser = (req, res, next) => {
+  const { limit } = req.params;
+  const allUser = getUserData();
+  if (limit >= allUser.length) {
+    res.send(`My have only ${allUser.length - 1}  data!`);
+  } else {
+    const limitUsers = allUser.filter((limitUser) => limitUser.id <= limit);
+    res.send(limitUsers);
+  }
+};
 module.exports.randomUser = (req, res, next) => {
   const allUsers = getUserData();
   const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
