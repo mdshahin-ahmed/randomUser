@@ -25,7 +25,7 @@ module.exports.addUser = (req, res, next) => {
   const userData = req.body;
   existUsers.push(userData);
   saveUserData(existUsers);
-  res.send(saveUserData);
+  res.send("User Added successfully!");
 };
 module.exports.deleteUser = (req, res, next) => {
   const id = req.params.id;
@@ -35,5 +35,18 @@ module.exports.deleteUser = (req, res, next) => {
     res.send("user is not exist");
   }
   saveUserData(filterUser);
-  res.send(saveUserData);
+  res.send("User deleted Successfully!");
+};
+module.exports.updateUser = (req, res, next) => {
+  const id = req.params.id;
+  const userData = req.body;
+  const existUsers = getUserData();
+  const findExist = existUsers.find((user) => user.id === Number(id));
+  if (!findExist) {
+    return res.send("User not exist");
+  }
+  const updateUser = existUsers.filter((user) => user.id !== Number(id));
+  updateUser.push(userData);
+  saveUserData(updateUser);
+  res.send("User data updated successfully!");
 };

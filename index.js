@@ -21,16 +21,16 @@ dbConnect();
 
 app.use("/user", toolsRoutes);
 
-app.get("/", (req, res) => {
-  // res.send("Hello World");
-  // res.sendFile(__dirname + "/public/test.html");
-  res.render("home.ejs", {
-    id: 5,
-    user: {
-      name: "Shahin",
-    },
-  });
-});
+// app.get("/", (req, res) => {
+//   // res.send("Hello World");
+//   // res.sendFile(__dirname + "/public/test.html");
+//   res.render("home.ejs", {
+//     id: 5,
+//     user: {
+//       name: "Shahin",
+//     },
+//   });
+// });
 app.all("*", (req, res) => {
   res.send("No route found!");
 });
