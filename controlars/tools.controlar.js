@@ -23,6 +23,23 @@ module.exports.randomUser = (req, res, next) => {
 module.exports.addUser = (req, res, next) => {
   const existUsers = getUserData();
   const userData = req.body;
+  console.log(userData);
+
+  if (
+    userData.id == null ||
+    userData.gender == null ||
+    userData.name == null ||
+    userData.contact == null ||
+    userData.address == null ||
+    userData.photoUrl == null
+  ) {
+    return res.send("User data missing!");
+  }
+  const findExist = existUsers.find((user) => user.id === userData.id);
+  if (findExist) {
+    return res.send("User already exist!");
+  }
+
   existUsers.push(userData);
   saveUserData(existUsers);
   res.send("User Added successfully!");
